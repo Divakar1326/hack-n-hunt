@@ -2,24 +2,19 @@ import qrcode
 import base64
 import pandas as pd
 
-# Location of your Excel file
-file_path = r"C:/Users/diva1/OneDrive/Desktop/Hack'n Hunt/ENCODED WORDS.xlsx"
+file_path = "ENCODED_WORDS.xlsx"
 
-# Load Excel file
 df = pd.read_excel(file_path)
+#read file
+encoded_word = df.loc[1, 'encoded']
 
-# Get the first encoded word (row 0, column 'encoded_secret')
-encoded_secret = df.loc[1, 'encoded']
+decoded = base64b64decode(encoded_word).decode()
 
-# Decode the word
-secret_word = base64.b64decode(encoded_secret).decode("utf-8")
-
-# Create QR code
-qr = qrcode.QRCode(box_size=10, border=4)
-qr.add_data(secret_word)
+qr = qrcode.QRCode(box_size=8, border=3)
+#get ur own word
+# qr.add_data(decoded_word)
+#make qr and scan it
 qr.make(fit=True)
-img = qr.make_image(fill_color="black", back_color="white")
 
-# Show and save
-img.show()
-
+img = qr.make_image(fill_color="white", back_color="black")
+# img.show()
